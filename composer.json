@@ -19,6 +19,7 @@
     },
     "require": {
         "php": ">=5.3.9",
+        "ext-gd": "*",
         "symfony/framework-bundle": "~2.3",
         "friendsofsymfony/jsrouting-bundle": "*"
     },
