@@ -1,4 +1,7 @@
+parameters:
+    crop_image_type_class: 'Marrouchi\UploadCropImageBundle\Form\Type\CropType'
 services:
-#    upload_crop_image.example:
-#        class: Marrouchi\UploadCropImageBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    crop_image_bundle.image_type:
+        class: %crop_image_type_class%
+        tags:
+            - { name: form.type, alias: crop_image }

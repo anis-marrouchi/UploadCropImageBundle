@@ -1,3 +1,15 @@
-#upload_crop_image_homepage:
-#    path:     /hello/{name}
-#    defaults: { _controller: UploadCropImageBundle:Default:index }
+media_upload_homepage:
+    path:     /upload
+    defaults: { _controller: UploadCropImageBundle:Media:upload }
+    options:
+        expose: true
+media_crop:
+    path:     /crop
+    defaults: { _controller: UploadCropImageBundle:Media:crop }
+    options:
+        expose: true
+media_json_upload:
+    path:   /json-upload
+    defaults: { _controller: UploadCropImageBundle:Media:jsonUpload }
+    options:
+        expose: true
