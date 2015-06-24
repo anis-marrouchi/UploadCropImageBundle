@@ -61,7 +61,6 @@
     "config": {
         "bin-dir": "bin"
     },
-    "target-dir": "Marrouchi/UploadCropImageBundle ",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
