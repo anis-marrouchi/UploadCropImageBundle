@@ -12,6 +12,15 @@
             "homepage": "http://www.twittstrap.com/"
         }
     ],
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "Marrouchi\\UploadCropImageBundle\\": ""

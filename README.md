@@ -106,7 +106,7 @@ And don't forget the JsRoutingBundle.
        …
        ```
 
-9. Now add to form tag the coordinate checker and render your form
+9. Now add the form tag the coordinate checker and render your form
 
     ```
     …
