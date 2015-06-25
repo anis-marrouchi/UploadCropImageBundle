@@ -65,6 +65,7 @@ And don't forget the JsRoutingBundle.
     </head>
 ```
 5. Include the javascript before the closing body tag
+
 	```
 	<body>
         …
@@ -73,17 +74,19 @@ And don't forget the JsRoutingBundle.
 
 	```
 6. Add the following to your Media/Image/Photo form type buildForm method
+
         ```
-public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder
-                …
-                ->add('file', 'file')
-                ->add('dimensions', 'crop_image', array('mapped' => false, 'label' => false))
-                …
-        ;
-    }
+        public function buildForm(FormBuilderInterface $builder, array $options) {
+                $builder
+                        …
+                        ->add('file', 'file')
+                        ->add('dimensions', 'crop_image', array('mapped' => false, 'label' => false))
+                        …
+                ;
+            }
         ```
 7. Now in your view, where you are rendering the form, include the following
+
        ```
        …
        <img src="holder.js/300x300?bg=#b8ebb8&fg=#ffffff" id="cropbox">
