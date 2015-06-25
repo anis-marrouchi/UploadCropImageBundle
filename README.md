@@ -39,6 +39,16 @@ Your contribution is welcome.
     ```
 And don't forget the JsRoutingBundle.
 
+3. Run schema update to generate table and install assets
+
+    ```
+    php app/console doctrine:schema:update --force
+    ```
+
+    ```
+    php app/console asset:install
+    ```
+
 3. Include the route to your routing.yml:
 
     ```
