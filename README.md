@@ -64,6 +64,7 @@ And don't forget the JsRoutingBundle.
         {% include 'UploadCropImageBundle:Commun:crop.includes.html.twig' %}
     </head>
 ```
+
 5. Include the javascript before the closing body tag
 
 	```
@@ -73,6 +74,7 @@ And don't forget the JsRoutingBundle.
 	</body>
 
 	```
+
 6. Add the following to your Media/Image/Photo form type buildForm method
 
         ```
@@ -85,6 +87,7 @@ And don't forget the JsRoutingBundle.
                 ;
             }
         ```
+
 7. Now in your view, where you are rendering the form, include the following
 
        ```
@@ -92,6 +95,7 @@ And don't forget the JsRoutingBundle.
        <img src="holder.js/300x300?bg=#b8ebb8&fg=#ffffff" id="cropbox">
        …
        ```
+
 8. Now add to form tag the coordinate checker and render your form
 
     ```
