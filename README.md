@@ -37,7 +37,7 @@ Your contribution is welcome.
         );
     }
     ```
-I don't forget the JsRoutingBundle.
+And don't forget the JsRoutingBundle.
 
 3. Include the route to your routing.yml:
 
