@@ -46,13 +46,15 @@ And don't forget the JsRoutingBundle.
         resource: "@UploadCropImageBundle/Resources/config/routing.yml"
         prefix:   /
     ```
- If did not install the JSroutingBundle include them.
+ If you did not install the JSroutingBundle include them.
     ```
     # app/config/routing.yml
     fos_js_routing:
     	resource: "@UploadCropImageBundle/Resources/config/routing/routing.xml"
     ```
 4. include the style and the javascript in your templates. The demo include is for demo purposes.
+
+```
         <head>
         …
         <script src="{{asset("bundles/uploadcropimage/js/jquery.min.js") }}"></script>
@@ -61,6 +63,7 @@ And don't forget the JsRoutingBundle.
         {% include 'UploadCropImageBundle:Commun:demo.includes.html.twig' %}
         {% include 'UploadCropImageBundle:Commun:crop.includes.html.twig' %}
     </head>
+```
 5. Include the javascript before the closing body tag
 	```
 	<body>
