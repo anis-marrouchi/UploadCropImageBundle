@@ -49,7 +49,7 @@ And don't forget the JsRoutingBundle.
     php app/console asset:install
     ```
 
-3. Include the route to your routing.yml:
+4. Include the route to your routing.yml:
 
     ```
     upload_crop_image:
@@ -62,7 +62,7 @@ And don't forget the JsRoutingBundle.
     fos_js_routing:
     	resource: "@UploadCropImageBundle/Resources/config/routing/routing.xml"
     ```
-4. include the style and the javascript in your templates. The demo include is for demo purposes.
+5. include the style and the javascript in your templates. The demo include is for demo purposes.
 
     ```
         <head>
@@ -75,7 +75,7 @@ And don't forget the JsRoutingBundle.
     </head>
     ```
 
-5. Include the javascript before the closing body tag
+6. Include the javascript before the closing body tag
 
 	```
 	<body>
@@ -85,7 +85,7 @@ And don't forget the JsRoutingBundle.
 
 	```
 
-6. Add the following to your Media/Image/Photo form type buildForm method
+7. Add the following to your Media/Image/Photo form type buildForm method
 
         ```
         public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -98,7 +98,7 @@ And don't forget the JsRoutingBundle.
             }
         ```
 
-7. Now in your view, where you are rendering the form, include the following
+8. Now in your view, where you are rendering the form, include the following
 
        ```
        …
@@ -106,7 +106,7 @@ And don't forget the JsRoutingBundle.
        …
        ```
 
-8. Now add to form tag the coordinate checker and render your form
+9. Now add to form tag the coordinate checker and render your form
 
     ```
     …
