@@ -39,7 +39,7 @@ Your contribution is welcome.
     ```
 And don't forget the JsRoutingBundle.
 
-3. Run schema update to generate table and install assets
+3. Run schema update to generate table, install assets  (Composer should install asset post the installation but just in case)
 
     ```
     php app/console doctrine:schema:update --force
