@@ -4,13 +4,11 @@
         <title>Live Cropping Demo</title>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <script src="{{asset("bundles/uploadcropimage/js/jquery.min.js") }}"></script>
-        <script src="{{asset("bundles/uploadcropimage/js/holder.min.js") }}"></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
-        <script src="{{ asset("bundles/uploadcropimage/js/jquery.Jcrop.js") }}"></script>
-        <link rel="stylesheet" href="{{ asset("bundles/uploadcropimage/css/main.css") }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset("bundles/uploadcropimage/css/demos.css") }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset("bundles/uploadcropimage/css/jquery.Jcrop.css") }}" type="text/css" />    </head>
+        {% include 'UploadCropImageBundle:Commun:demo.includes.html.twig' %}
+        {% include 'UploadCropImageBundle:Commun:crop.includes.html.twig' %}
+    </head>
     <body>
 
         <div class="container">
@@ -42,7 +40,12 @@
                             <div class="se-pre-con"></div>
                             <!-- // Ajax preloader -->
                             <div id="jcrop-holder">
-
+                                <!-- This is the image we're attaching Jcrop to -->
+                                {% if asset is defined %}
+                                    <img src="{{ asset }}" id="cropbox" />
+                                {% else %}
+                                    <img src="holder.js/300x300?bg=#b8ebb8&fg=#ffffff" id="cropbox">
+                                {% endif %}
 
                             </div>
                         </div>
@@ -65,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <script src="{{ asset("bundles/uploadcropimage/js/custom.js") }}" type="text/javascript"></script>
+        {% include 'UploadCropImageBundle:Commun:script.html.twig' %}
     </body>
 
 </html>

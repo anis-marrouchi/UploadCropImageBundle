@@ -1,18 +1,5 @@
 {% block crop_image_widget %}
     {% spaceless %}
-        <div id="jcrop-wrapper">
-            <!-- Ajax preloader -->
-            <div class="se-pre-con"></div>
-            <!-- // Ajax preloader -->
-            <div id="jcrop-holder">
-                <!-- This is the image we're attaching Jcrop to -->
-                {% if asset is defined %}
-                    <img src="{{ asset }}" id="cropbox" />
-                {% else %}
-                    <img src="holder.js/300x300?bg=#b8ebb8&fg=#ffffff" id="cropbox">
-                {% endif %}
-            </div>
-        </div>
         {{ form_widget(form.x, {'id':'x'}) }}
         {{ form_widget(form.x2, {'id':'x2'})}}
         {{ form_widget(form.y, {'id':'y'})}}
