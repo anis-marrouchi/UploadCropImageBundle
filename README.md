@@ -284,7 +284,6 @@ And don't forget the JsRoutingBundle.
         …
 	{% include "UploadCropImageBundle:Commun:script.html.twig" %}
 	</body>
-
 	```
 
 7. Add the following to your Media/Image/Photo form type buildForm method
