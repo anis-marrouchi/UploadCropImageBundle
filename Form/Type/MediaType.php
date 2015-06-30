@@ -22,7 +22,7 @@ class MediaType extends AbstractType {
     private $data_class;
 
     public function __construct($data_class) {
-        $this->data_class;
+        $this->data_class = $data_class;
     }
 
     /**
