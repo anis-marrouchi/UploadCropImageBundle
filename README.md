@@ -303,7 +303,9 @@ And don't forget the JsRoutingBundle.
 
        ``` html
        …
+       <div id="jcrop-holder">
        <img src="holder.js/300x300?bg=#b8ebb8&fg=#ffffff" id="cropbox">
+       </div>
        …
        ```
 
