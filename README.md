@@ -234,11 +234,11 @@ And don't forget the JsRoutingBundle.
 
     ```
 
-    ```
+    ``` bash
     php app/console doctrine:schema:update --force
     ```
 
-    ```
+    ``` bash
     php app/console asset:install
     ```
 
