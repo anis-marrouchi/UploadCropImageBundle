@@ -307,12 +307,16 @@ And don't forget the JsRoutingBundle.
        …
        ```
 
-9. Now add the form tag the coordinate checker and render your form
+9. Now add the form tag the coordinate checker and render your file field like so. You can pass the route for upload thru
+   the html data attributes. supported data attributes are data-route, the route you will handle the upload and
+   the data-id attributes used to handle any extra route id parameter.
+
 
     ``` twig
     …
     <form name="upload" action="{{ path('your_path') }}" {{ form_enctype(form) }} method="POST"  onsubmit="return checkCoords();">
     …
+    {{ form_widget(form.file, {'id':'file','data-route':'media_json_upload'})}}
     ```
 
 If you are rendering the form fields individually, you will need to include the following to your form
