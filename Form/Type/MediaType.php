@@ -19,6 +19,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class MediaType extends AbstractType {
 
+    private $data_class;
+
+    public function __construct($data_class) {
+        $this->data_class;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -35,7 +41,7 @@ class MediaType extends AbstractType {
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Marrouchi\UploadCropImageBundle\Entity\Media'
+            'data_class' => $this->data_class
         ));
     }
 

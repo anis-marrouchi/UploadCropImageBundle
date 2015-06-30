@@ -17,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Marrouchi\UploadCropImageBundle\Form\Type\MediaType;
-use Marrouchi\UploadCropImageBundle\Entity\Media;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -41,7 +40,7 @@ class MediaController extends Controller {
         $media = new $entityName;
         //Set filename to false to preview placeholder
         $filename = false;
-        $form = $this->createForm(new MediaType(), $media);
+        $form = $this->createForm(new MediaType($entityName), $media);
         return $this->render('UploadCropImageBundle:Media:upload.html.twig', array('form' => $form->createView(), 'filename' => $filename));
     }
 
@@ -51,7 +50,7 @@ class MediaController extends Controller {
         $media = new $entityName;
         //Set filename to false to preview placeholder
         $filename = false;
-        $form = $this->createForm(new MediaType(), $media);
+        $form = $this->createForm(new MediaType($entityName), $media);
         $form->handleRequest($request);
         //Process the form
         if ($form->isValid()) {
@@ -73,7 +72,7 @@ class MediaController extends Controller {
         $media = new $entityName;
         //Set filename to false to preview placeholderz
         $asset = false;
-        $form = $this->createForm(new MediaType(), $media);
+        $form = $this->createForm(new MediaType($entityName), $media);
         $form->handleRequest($request);
         //Process the form
         if ($form->isValid()) {
