@@ -16,13 +16,13 @@ Your contribution is welcome.
 
 1. Add this bundle to your project in composer.json:
 
-	```
+	```  json
     {
         "require": {
             "marrouchi/upload-crop-image-bundle": "dev-master",
         }
     }
-    ```
+    ``` php
 2. Register UploadCropImageBundle in your app/AppKernel.php:
 
     ```
@@ -263,7 +263,7 @@ And don't forget the JsRoutingBundle.
     ```
 5. include the style and the javascript in your templates. The demo include is for demo purposes.
 
-    ```
+    ``` twig
         <head>
         …
         <script src="{{asset("bundles/uploadcropimage/js/jquery.min.js") }}"></script>
@@ -276,7 +276,7 @@ And don't forget the JsRoutingBundle.
 
 6. Include the javascript before the closing body tag
 
-	```
+	``` twig
 	<body>
         …
 	{% include "UploadCropImageBundle:Commun:script.html.twig" %}
@@ -286,7 +286,7 @@ And don't forget the JsRoutingBundle.
 
 7. Add the following to your Media/Image/Photo form type buildForm method
 
-        ```
+        ``` php
         public function buildForm(FormBuilderInterface $builder, array $options) {
                 $builder
                         …
@@ -299,7 +299,7 @@ And don't forget the JsRoutingBundle.
 
 8. Now in your view, where you are rendering the form, include the following
 
-       ```
+       ``` html
        …
        <img src="holder.js/300x300?bg=#b8ebb8&fg=#ffffff" id="cropbox">
        …
@@ -307,14 +307,14 @@ And don't forget the JsRoutingBundle.
 
 9. Now add the form tag the coordinate checker and render your form
 
-    ```
+    ``` twig
     …
     <form name="upload" action="{{ path('your_path') }}" {{ form_enctype(form) }} method="POST"  onsubmit="return checkCoords();">
     …
     ```
 If you are rendering the form fields individually, you will need to include the following to your form
 
-    ```
+    ``` twig
     …
     {{ form_widget(form.dimensions) }}
     …
