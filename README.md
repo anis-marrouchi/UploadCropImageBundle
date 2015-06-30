@@ -22,10 +22,12 @@ Your contribution is welcome.
             "marrouchi/upload-crop-image-bundle": "dev-master",
         }
     }
-    ``` php
-2. Register UploadCropImageBundle in your app/AppKernel.php:
 
     ```
+
+2. Register UploadCropImageBundle in your app/AppKernel.php:
+
+    ``` php
     // app/AppKernel.php
     public function registerBundles()
     {
@@ -37,6 +39,7 @@ Your contribution is welcome.
         );
     }
     ```
+
 And don't forget the JsRoutingBundle.
 
 3. Add Media entity, run schema update to generate table, and install assets  (Composer should install asset post the installation but just in case)
@@ -312,6 +315,7 @@ And don't forget the JsRoutingBundle.
     <form name="upload" action="{{ path('your_path') }}" {{ form_enctype(form) }} method="POST"  onsubmit="return checkCoords();">
     …
     ```
+
 If you are rendering the form fields individually, you will need to include the following to your form
 
     ``` twig
@@ -319,4 +323,5 @@ If you are rendering the form fields individually, you will need to include the 
     {{ form_widget(form.dimensions) }}
     …
     ```
+
 And that's it, let me know if you are facing some problem and let me know ways i can improve the bundle. Enjoy! ;)
