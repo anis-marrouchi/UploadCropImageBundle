@@ -37,7 +37,8 @@ class MediaController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function uploadAction(Request $request) {
-        $media = new Media();
+        $entityName = $this->container->getParameter('upload_crop_image.media_entity');
+        $media = new $entityName;
         //Set filename to false to preview placeholder
         $filename = false;
         $form = $this->createForm(new MediaType(), $media);
@@ -46,7 +47,8 @@ class MediaController extends Controller {
 
     public function jsonUploadAction(Request $request) {
 //Process upload in controller
-        $media = new Media();
+        $entityName = $this->container->getParameter('upload_crop_image.media_entity');
+        $media = new $entityName;
         //Set filename to false to preview placeholder
         $filename = false;
         $form = $this->createForm(new MediaType(), $media);
@@ -67,7 +69,8 @@ class MediaController extends Controller {
 
     public function cropAction(Request $request) {
         //Process upload in controller
-        $media = new Media();
+        $entityName = $this->container->getParameter('upload_crop_image.media_entity');
+        $media = new $entityName;
         //Set filename to false to preview placeholderz
         $asset = false;
         $form = $this->createForm(new MediaType(), $media);

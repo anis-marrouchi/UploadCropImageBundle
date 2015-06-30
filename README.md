@@ -39,7 +39,200 @@ Your contribution is welcome.
     ```
 And don't forget the JsRoutingBundle.
 
-3. Run schema update to generate table, install assets  (Composer should install asset post the installation but just in case)
+3. Add Media entity, run schema update to generate table, and install assets  (Composer should install asset post the installation but just in case)
+
+    ``` php
+    namespace YourNamespace\YourBundle\Entity;
+
+    use Doctrine\ORM\Mapping as ORM;
+    use Symfony\Component\Validator\Constraints as Assert;
+
+    /**
+     * Description: Media
+     * @todo adjust to your need if you want to handle uploads by lifecyclecallback
+     * @ORM\Entity
+     * @ORM\Table()
+     * //@ORM\HasLifecycleCallbacks <-
+     */
+    class Media {
+
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="string", length=255)
+         */
+        protected $name;
+
+        public function getName() {
+            return $this->name;
+        }
+
+        public function setName($name) {
+            $this->name = $name;
+
+            return $this;
+        }
+
+        /**
+         * @ORM\Column(type="string", length=255, nullable=true)
+         */
+        protected $path;
+
+        public function setPath($path) {
+            $this->path = $path;
+
+            return $this;
+        }
+
+        public function getPath() {
+            return $this->path;
+        }
+
+        /**
+         * @ORM\Column(name="created",type="date")
+         */
+        protected $created;
+
+        /**
+         * @var File
+         *
+         * @Assert\File(
+         *     maxSize = "1M",
+         *     mimeTypes = {"image/jpeg"},
+         *     maxSizeMessage = "The maxmimum allowed file size is 5MB.",
+         *     mimeTypesMessage = "Only the filetypes image are allowed."
+         * )
+         */
+        protected $file;
+
+        public function __construct() {
+            $this->created = new \Datetime();
+        }
+
+        public function getUploadRootDir() {
+            // absolute path to your directory where images must be saved
+            return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+        }
+
+        public function getUploadDir() {
+            return 'uploads/';
+        }
+
+        public function getAbsolutePath() {
+            return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->id . '.' . $this->path;
+        }
+
+        public function getWebPath() {
+            return null === $this->name ? null : '/' . $this->getUploadDir() . '/' . $this->name;
+        }
+
+        /**
+         * @ORM\PrePersist()
+         * @ORM\PreUpdate()
+         */
+        public function preUpload() {
+            if (null !== $this->file) {
+                // faites ce que vous voulez pour gÃ©nÃ©rer un nom unique
+                $filename = sha1(uniqid(mt_rand(), true));
+                $this->name = $filename;
+                $this->path = $filename . '.' . $this->file->guessExtension();
+            }
+        }
+
+        /**
+         * @ORM\PostPersist()
+         * @ORM\PostUpdate()
+         */
+        public function upload() {
+            if (null === $this->file) {
+                return;
+            }
+
+            // s'il y a une erreur lors du dÃ©placement du fichier, une exception
+            // va automatiquement Ãªtre lancÃ©e par la mÃ©thode move(). Cela va empÃªcher
+            // proprement l'entitÃ© d'Ãªtre persistÃ©e dans la base de donnÃ©es si
+            // erreur il y a
+            $this->file->move($this->getUploadRootDir(), $this->path);
+
+            unset($this->file);
+        }
+
+        /**
+         * @ORM\PreRemove()
+         */
+        public function storeFilenameForRemove() {
+            $this->filenameForRemove = $this->getAbsolutePath();
+        }
+
+        /**
+         * @ORM\PostRemove()
+         */
+        public function removeUpload() {
+            if ($this->filenameForRemove) {
+                unlink($this->filenameForRemove);
+            }
+        }
+
+        /**
+         * Get id.
+         *
+         * @return int
+         */
+        public function getId() {
+            return $this->id;
+        }
+
+        /**
+         * Set created.
+         *
+         * @param \DateTime $created
+         *
+         * @return Media
+         */
+        public function setCreated($created) {
+            $this->created = $created;
+
+            return $this;
+        }
+
+        /**
+         * Get created.
+         *
+         * @return \DateTime
+         */
+        public function getCreated() {
+            return $this->created;
+        }
+
+        /* Set file
+         *
+         * @param $file
+         * @return Media
+         */
+
+        public function setFile($file) {
+            $this->file = $file;
+
+            return $this;
+        }
+
+        /**
+         * Get file.
+         *
+         * @return $file
+         */
+        public function getFile() {
+            return $this->file;
+        }
+
+    }
+
+    ```
 
     ```
     php app/console doctrine:schema:update --force
@@ -49,18 +242,24 @@ And don't forget the JsRoutingBundle.
     php app/console asset:install
     ```
 
-4. Include the route to your routing.yml:
+4. Include the route to your routing.yml and the config to your config.yml:
 
-    ```
+    ``` yml
     upload_crop_image:
         resource: "@UploadCropImageBundle/Resources/config/routing.yml"
         prefix:   /
     ```
  If you did not install the JSroutingBundle include them.
-    ```
+
+    ``` yml
     # app/config/routing.yml
     fos_js_routing:
     	resource: "@UploadCropImageBundle/Resources/config/routing/routing.xml"
+    ```
+
+    ``` yml
+    upload_crop_image:
+        media_entity: YourNamespace\YourBundle\Entity\Media
     ```
 5. include the style and the javascript in your templates. The demo include is for demo purposes.
 

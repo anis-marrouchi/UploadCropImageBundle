@@ -1,8 +1,12 @@
 $("#file").change(function () {
     var file = this.files[0];
+
+    console.log(file);
     name = file.name;
     size = file.size;
     type = file.type;
+    var route = $(this).data("route");
+    var id = $(this).data("id");
     if (file.name.length < 1) {
     }
     else if (file.size > 1000000) {
@@ -12,8 +16,17 @@ $("#file").change(function () {
         alert("File doesnt match jpg");
     }
     else {
-        var formData = new FormData($('form')[0]);
-        var url = Routing.generate('media_json_upload');
+        //var form = $(this).closest("form");
+        //var form = $(this).closest('form');
+        var formData = new FormData(this.form);
+        var url;
+        if (id) {
+            url = Routing.generate(route, {id: id});
+        }
+        else {
+            url = Routing.generate(route);
+        }
+
         $.ajax({
             url: url, //server script to process data
             type: 'POST',
@@ -30,7 +43,7 @@ $("#file").change(function () {
             success: completeHandler = function (data) {
                 destroyJCrop();
                 initJCrop(data.asset);
-                $(".se-pre-con").fadeOut("slow");
+                $(".se-pre-con").fadeOut("slow");//TODO
                 $("#name").val(data.name);
                 $("#directory").val(data.directory);
                 $("#_submit").attr("disabled", false);
@@ -43,7 +56,6 @@ $("#file").change(function () {
             //Options to tell JQuery not to process data or worry about content-type
             cache: false,
             contentType: false,
-            async: false,
             processData: false
         }, 'json');
     }

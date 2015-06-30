@@ -52,7 +52,7 @@
                         <!-- This is the form that our event handler fills -->
                         <form name="upload" action="{{ path('media_crop') }}" {{ form_enctype(form) }} method="POST"  onsubmit="return checkCoords();">
                             {{ form_widget(form._token) }}
-                            {{ form_widget(form.file, {'id':'file'})}}
+                            {{ form_widget(form.file, {'id':'file','data-route':'media_json_upload'})}}
                             {{ form_widget(form.dimensions) }}
                             <button type="submit" id="_submit" disabled="disabled" name="_submit" class="btn btn-primary nl-button"><i class="fa fa-sign-in"></i> Upload</button>
                         </form>
